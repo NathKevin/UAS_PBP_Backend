@@ -28,7 +28,24 @@ class DeliveryController extends Controller
     }
 
     //method untuk menampilkan 1 data delivery (search)
-    public function show($id){
+    public function showAll($id){
+        $delivery = Delivery::where('user_id', $id)->get(); // mencari data  berdasarkan id
+
+        if(!is_null($delivery)){
+            return response([
+                'message' => 'Retrieve All Delivery Data Success',
+                'data' => $delivery
+            ], 200);
+        } //return data  yang ditemukan dalam bentuk json
+
+        return response([
+            'message' => 'Delivery Data Not Found',
+            'data' => null
+        ], 400); //return message data tidak ditemukan
+    }
+
+    //method untuk menampilkan 1 data delivery (search)
+    public function showUpdate($id){
         $delivery = Delivery::find($id); // mencari data  berdasarkan id
 
         if(!is_null($delivery)){
@@ -48,6 +65,8 @@ class DeliveryController extends Controller
     public function store(Request $request){
         $storeData = $request->all(); //mengambil semua input dari api client
         $validate = Validator::make($storeData, [
+            'user_id' => 'required|numeric',
+            'pengantar_id' => 'required|numeric',
             'recipientName' => 'required|max:60',
             'type' => 'required',
             'fragile' => 'required',
@@ -84,7 +103,7 @@ class DeliveryController extends Controller
         }//return message saat berhasil hapus data 
 
         return response([
-            'message' => 'Delete Course Failed',
+            'message' => 'Delete Delivery Failed',
             'data' => null
         ], 400); //return message saat gagal hapus data 
     }
@@ -121,12 +140,12 @@ class DeliveryController extends Controller
         if($delivery->save()){
             return response([
                 'message' => 'Update Delivery Data Success',
-                'data' => $course
+                'data' => $delivery
             ], 200);
         }// return data yang telah di edit dalam bentuk json
 
         return response([
-            'message' => 'Update Course Failed',
+            'message' => 'Update Delivery Failed',
             'data' => null
         ], 400); //return message saat data gagal di edit
     }

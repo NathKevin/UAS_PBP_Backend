@@ -6,18 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class Delivery extends Model
+class Pengantar extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'pengantar_id',
-        'recipientName', 
-        'type', 
-        'fragile', 
-        'pickupAddress', 
-        'destinationAddress'
+        'nama', 'noTelp',
     ];//atribut yang bisa diisi ke database
 
     public function getCreatedAtAttribute(){

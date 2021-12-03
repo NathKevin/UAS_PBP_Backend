@@ -15,6 +15,8 @@ class CreateDeliveriesTable extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('pengantar_id');
             $table->string('recipientName');
             $table->string('type');
             $table->string('fragile');

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'noTelp', //tambahan atribut
         'email',
         'password',
+        'gambar',
     ];
 
     /**
