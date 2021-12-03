@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
 
-Route::group(['middleware' => 'auth:api'], function () {
+
     Route::get('delivery', 'Api\DeliveryController@index');
     Route::get('delivery/{id}', 'Api\DeliveryController@showAll');
     Route::get('delivery/update/{id}', 'Api\DeliveryController@showUpdate');
@@ -32,5 +32,3 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('pengantar/{id}', 'Api\PengantarController@destroy');
     //-------------------------------------------------------------------
     Route::put('user/{id}', 'Api\AuthController@update');
-
-});
